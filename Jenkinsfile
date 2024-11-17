@@ -5,25 +5,25 @@ pipeline {
         stage('Setup') {
             steps {
                 echo 'Setting up environment...'
-                sh 'pip install -r requirements.txt'
+                bat 'pip install -r requirements.txt'
             }
         }
         stage('Build') {
             steps {
                 echo 'Building the application...'
-                sh 'python your_script.py'
+                bat 'python app.py'
             }
         }
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh 'pytest'
+                bat 'pytest'
             }
         }
         stage('Static Code Analysis') {
             steps {
                 echo 'Running static code analysis...'
-                sh 'flake8 .'
+                bat 'flake8 .'
             }
         }
         stage('Publish') {

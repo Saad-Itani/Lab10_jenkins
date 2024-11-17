@@ -30,30 +30,30 @@ stage('Build') {
         stage('Test') {
             steps {
                 echo 'Running unit tests...'
-                sh 'python -m unittest discover'
+                bat 'python -m unittest discover'
             }
         }
 
         stage('Static Code Analysis') {
             steps {
                 echo 'Running static code analysis...'
-                sh 'flake8 .'
+                bat 'flake8 .'
             }
         }
 
         stage('Coverage') {
             steps {
                 echo 'Running code coverage analysis...'
-                sh 'coverage run -m unittest discover'
-                sh 'coverage report -m'
-                sh 'coverage html'
+                bat 'coverage run -m unittest discover'
+                bat 'coverage report -m'
+                bat 'coverage html'
             }
         }
 
         stage('Security Scan') {
             steps {
                 echo 'Running security scan...'
-                sh 'bandit -r .'
+                bat 'bandit -r .'
             }
         }
 
@@ -66,7 +66,7 @@ stage('Build') {
         stage('Deployment') {
     steps {
         echo 'Deploying the application...'
-        sh 'bash deploy.sh'
+        bat 'bash deploy.sh'
     }
 }
     }

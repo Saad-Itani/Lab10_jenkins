@@ -21,9 +21,6 @@ stage('Build') {
     steps {
         script {
             echo 'Building the application...'
-            sh 'ls'  // List all files in the directory
-            sh 'cat app.py'  // Print the contents of the application file to ensure it's correct
-            sh 'python --version'  // Confirm Python version
             sh 'python app.py'  // Run the application
         }
     }

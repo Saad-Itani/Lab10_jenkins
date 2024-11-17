@@ -40,6 +40,11 @@ stage('Build') {
                 bat 'flake8 .'
             }
         }
+        stage('Cleanup') {
+    steps {
+        bat 'if exist .coverage del .coverage'
+    }
+}
 
         stage('Coverage') {
             steps {

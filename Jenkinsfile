@@ -18,13 +18,15 @@ pipeline {
         }
 
         stage('Build') {
-            steps {
-                echo 'Building the application...'
-                sh 'pwd'
-                sh 'ls -l'
-                sh 'python app.py'
-            }
+    steps {
+        script {
+            echo 'Building the application...'
+            sh 'pwd'  // Print the workspace directory
+            sh 'ls -la'  // Confirm files exist
+            sh 'python app.py'  // Execute the application
         }
+    }
+}
 
         stage('Test') {
             steps {

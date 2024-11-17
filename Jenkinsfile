@@ -49,11 +49,12 @@ stage('Build') {
         stage('Coverage') {
             steps {
                 echo 'Running code coverage analysis...'
-                bat 'coverage run -m unittest discover'
+                bat 'coverage run --source=app -m unittest discover'
                 bat 'coverage report -m'
                 bat 'coverage html'
             }
         }
+
 
         stage('Security Scan') {
             steps {

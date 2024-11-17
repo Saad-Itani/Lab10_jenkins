@@ -21,7 +21,8 @@ stage('Build') {
     steps {
         script {
             echo 'Building the application...'
-            sh 'python app.py'  // Run the application
+
+            bat 'python app.py'  // Run the application
         }
     }
 }

@@ -1,6 +1,4 @@
-# deploy.sh
-#!/bin/bash
-echo "Deploying application..."
-mkdir -p /tmp/python-app
-cp app.py /tmp/python-app
-echo "Application deployed to /tmp/python-app"
+echo Deploying the application...
+if not exist "C:\Deployment" mkdir "C:\Deployment"
+copy app.py C:\Deployment\
+echo Deployment Complete.

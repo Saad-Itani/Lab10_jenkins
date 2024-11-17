@@ -72,7 +72,7 @@ stage('Build') {
         stage('Deployment') {
     steps {
         echo 'Deploying the application...'
-        bat 'bash deploy.sh'
+        bat 'deploy.bat'
     }
 }
     }

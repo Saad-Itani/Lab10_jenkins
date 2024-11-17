@@ -60,5 +60,11 @@ pipeline {
                 archiveArtifacts artifacts: '**/app.py, **/test_app.py, **/coverage_html_report/**'
             }
         }
+        stage('Deployment') {
+    steps {
+        echo 'Deploying the application...'
+        sh 'bash deploy.sh'
+    }
+}
     }
 }

@@ -2,34 +2,62 @@ pipeline {
     agent any
 
     stages {
-        stage('Setup') {
+        stage('Checkout SCM') {
             steps {
-                echo 'Setting up environment...'
-                bat 'pip install -r requirements.txt'
+                checkout scm
             }
         }
+
+        stage('Setup') {
+            steps {
+                script {
+                    echo 'Setting up environment...'
+                    sh 'pip install -r requirements.txt'
+                }
+            }
+        }
+
         stage('Build') {
             steps {
                 echo 'Building the application...'
-                bat 'python app.py'
+                sh 'python app.py'
             }
         }
+
         stage('Test') {
             steps {
-                echo 'Running tests...'
-                bat 'pytest'
+                echo 'Running unit tests...'
+                sh 'python -m unittest discover'
             }
         }
+
         stage('Static Code Analysis') {
             steps {
                 echo 'Running static code analysis...'
-                bat 'flake8 .'
+                sh 'flake8 .'
             }
         }
+
+        stage('Coverage') {
+            steps {
+                echo 'Running code coverage analysis...'
+                sh 'coverage run -m unittest discover'
+                sh 'coverage report -m'
+                sh 'coverage html'
+            }
+        }
+
+        stage('Security Scan') {
+            steps {
+                echo 'Running security scan...'
+                sh 'bandit -r .'
+            }
+        }
+
         stage('Publish') {
             steps {
-                echo 'Archiving build outputs...'
-                archiveArtifacts artifacts: '**/*.py', fingerprint: true
+                echo 'Publishing artifacts...'
+                archiveArtifacts artifacts: '**/app.py, **/test_app.py, **/coverage_html_report/**'
             }
         }
     }

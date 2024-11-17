@@ -20,6 +20,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the application...'
+                sh 'pwd'
+                sh 'ls -l'
                 sh 'python app.py'
             }
         }
